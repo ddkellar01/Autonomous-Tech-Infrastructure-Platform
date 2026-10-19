@@ -1,0 +1,33 @@
+name: Nightly Intelligence Scout & Sandbox Test
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # Runs every night at 2:00 UTC
+  workflow_dispatch:
+
+jobs:
+  scout-and-test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run Tech Scout Bot
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        python -c "from src.scout_bot.scout_bot import TechScoutBot; bot = TechScoutBot(); print(bot.scout_organization_repos('google'))"
+
+    - name: Execute Sandbox Regression Test
+      run: |
+        python -c "from src.sandbox_runner.sandbox_runner import SandboxRunner; r = SandboxRunner(); print(r.execute_in_sandbox('https://github.com/pallets/markupsafe.git', 'pytest'))"
