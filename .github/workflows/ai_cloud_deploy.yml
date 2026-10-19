@@ -1,0 +1,39 @@
+name: AI Infrastructure & Cloud Deployment
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'config/**'
+      - 'src/ai_infra/**'
+      - 'Dockerfile'
+
+jobs:
+  deploy-ai-infra:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and Push AI Engine Image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: docker/Dockerfile.scout
+        push: true
+        tags: credkellar/autonomous-engine:ai-latest
+
+    - name: Validate Kubernetes Manifests
+      run: |
+        echo "Validating KServe and KubeRay YAML files..."
+        python -c "import yaml; [yaml.safe_load(open(f)) for f in ['config/inferenceservice.yaml', 'config/raycluster-tpu.yaml']]"
+        echo "Manifests successfully validated."
