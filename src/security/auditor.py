@@ -7,8 +7,14 @@ class SecurityAuditor:
 
     def run_bandit_scan(self):
         cmd = ["bandit", "-r", self.target_dir, "-f", "json"]
-        result = subprocess.run(cmd, capture_output=True, text=True)
-        return {
-            "exit_code": result.returncode,
-            "report": result.stdout
-        }
+        try:
+            result = subprocess.run(cmd, capture_output=True, text=True, check=False)
+            return {
+                "exit_code": result.returncode,
+                "report": result.stdout
+            }
+        except FileNotFoundError:
+            return {
+                "exit_code": 127,
+                "report": "Error: bandit tool is not installed or not found in PATH."
+            }
