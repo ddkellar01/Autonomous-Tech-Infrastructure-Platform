@@ -1,0 +1,10 @@
+fastapi==0.110.0
+uvicorn==0.28.0
+requests==2.31.0
+pyyaml==6.0.1
+pytest==8.1.1
+bandit==1.7.8
+pydantic==2.6.4
+sqlalchemy==2.0.28
+streamlit==1.32.0
+docker==7.0.0
