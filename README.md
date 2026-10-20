@@ -4,13 +4,14 @@
 
 An integrated self-study and autonomous R&D engine uniting full-stack software engineering, cloud infrastructure, AI/ML orchestration, and cybersecurity.
 
-​===============================================
           🤖 AUTONOMOUS TECH & INFRASTRUCTURE PLATFORM 🚀
-==================================================
 
 [![Advanced CI/CD Pipeline](https://github.com/ddkeller01/autonomous-engine/actions/workflows/advanced_ci.yml/badge.svg)](https://github.com/ddkeller01/autonomous-engine/actions/workflows/advanced_ci.yml)
+
 [![Security Audit and Tests](https://github.com/ddkeller01/autonomous-engine/actions/workflows/codeql.yml/badge.svg)](https://github.com/ddkeller01/autonomous-engine/actions/workflows/codeql.yml)
+
 [![Nightly Scout and Test](https://github.com/ddkeller01/autonomous-engine/actions/workflows/nightly_scout_and_test.yml/badge.svg)](https://github.com/ddkeller01/autonomous-engine/actions/workflows/nightly_scout_and_test.yml)
+
 [![Security Audit](https://github.com/ddkeller01/autonomous-engine/actions/workflows/security-audit.yml/badge.svg)](https://github.com/ddkeller01/autonomous-engine/actions/workflows/security-audit.yml)
 
 --------------------------------------------------------------------------------
