@@ -1,3 +1,5 @@
+![Private Study and R&D Engine](1792462317841.jpg)
+
 # Autonomous Tech & Infrastructure Platform
 
 An integrated self-study and autonomous R&D engine uniting full-stack software engineering, cloud infrastructure, AI/ML orchestration, and cybersecurity.
